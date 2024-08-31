@@ -1,0 +1,68 @@
+
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="sessionid">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> SessionId </th>
+            <td mat-cell *matCellDef="let row"> {{row.sessionId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="startdate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.startDate}} </td>
+        </ng-container>
+        <!-- ID Column -->
+        <ng-container matColumnDef="starttime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Time </th>
+            <td mat-cell *matCellDef="let row"> {{row.startTime}} </td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="endtime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> End Time </th>
+            <td mat-cell *matCellDef="let row"> {{row.endTime}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="capacity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Capacity </th>
+            <td mat-cell *matCellDef="let row"> {{row.capacity}} </td>
+        </ng-container>
+
+        <!-- Fruit Column -->
+        <ng-container matColumnDef="numberoflecture">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Number Of Lecture </th>
+            <td mat-cell *matCellDef="let row"> {{row.numberOfLecture}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="topics">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Topics </th>
+            <td mat-cell *matCellDef="let row"> {{row.topics}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="courseid">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> CourseId </th>
+            <td mat-cell *matCellDef="let row"> {{row.courseId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="userid">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> UserId </th>
+            <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"(click)="selectsession(row)"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
